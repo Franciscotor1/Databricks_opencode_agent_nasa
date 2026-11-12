@@ -16,7 +16,7 @@ build:
 
 run:
 	@mkdir -p workspace
-	docker compose run --rm opencode-databricks
+	./run-secure.sh
 
 shell:
 	docker compose exec opencode-databricks /bin/bash
