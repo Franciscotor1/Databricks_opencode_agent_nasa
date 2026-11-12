@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
     python3-venv \
+    nmap \
     && rm -rf /var/lib/apt/lists/*
 
 # Instalar uv (gestor de paquetes Python ultrarrápido)
@@ -47,6 +48,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     ca-certificates \
+    nmap \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar entorno virtual de python y binarios de databricks CLI y opencode desde builder
