@@ -1,0 +1,52 @@
+services:
+  opencode-databricks:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: databricks-opencode-agent:latest
+    container_name: databricks-opencode-agent
+    restart: unless-stopped
+    user: "1000:1000"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    tmpfs:
+      - /tmp:size=100M,mode=1777
+    volumes:
+      - type: bind
+        source: ./workspace
+        target: /workspace
+      - type: volume
+        source: memory_data
+        target: /data/memory
+    environment:
+      - HOME=/tmp
+      - OPENCODE_MEMORY_PATH=/data/memory
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    networks:
+      - databricks_net
+
+volumes:
+  memory_data:
+    name: databricks_memory_data
+
+networks:
+  databricks_net:
+    driver: bridge
+    internal: false
+    # Nota en Arch Linux: se recomienda configurar reglas nftables/iptables en el host
+    # para restringir tráfico saliente solo a generativelanguage.googleapis.com y el workspace de Databricks.

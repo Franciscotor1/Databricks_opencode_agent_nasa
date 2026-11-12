@@ -1,0 +1,9 @@
+.git
+.env
+workspace/
+docs/
+Makefile
+compose.yaml
+README.md
+.gitignore
+.dockerignore
