@@ -1,5 +1,6 @@
 .env
 workspace/
+data/memory/
 __pycache__/
 .pytest_cache/
 .databricks/

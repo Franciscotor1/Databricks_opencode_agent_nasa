@@ -27,8 +27,8 @@ services:
       - type: bind
         source: ./workspace
         target: /workspace
-      - type: volume
-        source: memory_data
+      - type: bind
+        source: ./data/memory
         target: /data/memory
     environment:
       - HOME=/tmp
@@ -39,10 +39,6 @@ services:
     tty: true
     networks:
       - databricks_net
-
-volumes:
-  memory_data:
-    name: databricks_memory_data
 
 networks:
   databricks_net:
