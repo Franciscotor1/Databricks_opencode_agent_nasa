@@ -9,12 +9,7 @@
       }
     }
   },
-  "plugin": [
-    "opencode-mem@1.0.2",
-    "@tarquinen/opencode-dcp",
-    "damage-control",
-    "envsitter-guard"
-  ],
+  "plugins": [],
   "mcp": {
     "databricks-sql": {
       "type": "http",

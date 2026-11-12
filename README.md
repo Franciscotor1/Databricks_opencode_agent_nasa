@@ -3,17 +3,11 @@
 Agente de desarrollo inteligente basado en **opencode**, empaquetado en un contenedor Docker seguro y optimizado para **Databricks Free Edition** (Unity Catalog, serverless, DABs, MCP connectors) sobre Arch Linux / Podman / Docker.
 
 ## 🚀 Características Principales
-- **Zero Token Overhead en Startup**: Skills, plugins (`opencode-mem`, `@tarquinen/opencode-dcp`, `damage-control`, `envsitter-guard`) y herramientas CLI instalados durante el build de la imagen.
+- **Zero Token Overhead en Startup**: Skills y herramientas CLI instalados durante el build de la imagen.
 - **Modelo Avanzado con Pensamiento**: Configurado con `google/gemini-3.5-flash-lite` y nivel de pensamiento `medium`.
 - **Hardening de Seguridad Extremo**: Contenedor no root, capacidades descartadas (`cap_drop: ALL`), modo solo lectura (`read_only: true`), límites de recursos (CPU/Memoria/PIDs) y permisos estrictos en opencode.
 - **Memoria Persistente**: SQLite + índice vectorial en volumen dedicado (`/data/memory`), excluyendo estrictamente secretos.
 - **Conectores MCP**: Integración con herramientas gestionadas de Databricks (SQL y funciones de Unity Catalog).
-
-### 🧩 Plugins Integrados (`opencode.json`)
-- **`opencode-mem@1.0.2`**: Memoria persistente basada en SQLite e índice vectorial para retener contexto entre sesiones.
-- **`@tarquinen/opencode-dcp`**: Context Protocol integration for enhanced agent orchestration and context state management.
-- **`damage-control`**: Control de daños y salvaguardas para prevenir modificaciones o comandos accidentales en el entorno.
-- **`envsitter-guard`**: Guardia de seguridad para archivos `.env` y variables de entorno, previniendo exposición o filtración de secretos.
 
 ---
 
