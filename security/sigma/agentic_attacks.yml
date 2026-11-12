@@ -1,0 +1,32 @@
+title: Detect Unauthorized Agentic Tool Execution and Exfiltration
+id: ag-sec-001
+status: experimental
+description: Detects abnormal agent behavior, unauthorized data exfiltration via MCP/Databricks, or prompt injection indicators.
+references:
+  - https://owasp.org/www-project-top-10-for-large-language-models/
+author: Databricks Opencode Security Team
+date: 2026/11/11
+tags:
+  - attack.execution
+  - attack.exfiltration
+  - ai.agentic
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_tools:
+    commandline|contains:
+      - "DROP TABLE"
+      - "DELETE FROM"
+      - "SELECT * FROM system.access"
+      - "curl "
+      - "wget "
+      - "nc "
+  selection_agent_env:
+    environment|contains:
+      - "GEMINI_API_KEY="
+      - "DATABRICKS_TOKEN="
+  condition: selection_tools or selection_agent_env
+falsepositives:
+  - Legitimate administrative maintenance
+level: high
