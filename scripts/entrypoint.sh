@@ -1,18 +1,19 @@
 #!/bin/bash
 set -euo pipefail
 
-EXPECTED_PASSWORD="${AGENT_PASSWORD:-databricks2026}"
+# Si se define AGENT_PASSWORD en el entorno, se valida. De lo contrario, opcionalmente verifica autenticación del sistema o inicia directamente.
+if [ -n "${AGENT_PASSWORD:-}" ]; then
+    echo "=================================================="
+    echo "  Databricks Opencode Agent - Security Check"
+    echo "=================================================="
+    read -s -p "Ingrese su contraseña de acceso: " entered_password
+    echo ""
 
-echo "=================================================="
-echo "  Databricks Opencode Agent - Security Check"
-echo "=================================================="
-read -s -p "Ingrese la contraseña de acceso al agente: " entered_password
-echo ""
-
-if [ "$entered_password" != "$EXPECTED_PASSWORD" ]; then
-    echo "[!] Acceso denegado: Contraseña incorrecta."
-    exit 1
+    if [ "$entered_password" != "$AGENT_PASSWORD" ]; then
+        echo "[!] Acceso denegado: Contraseña incorrecta."
+        exit 1
+    fi
+    echo "[+] Acceso concedido."
 fi
 
-echo "[+] Acceso concedido. Iniciando agente..."
 exec opencode "$@"

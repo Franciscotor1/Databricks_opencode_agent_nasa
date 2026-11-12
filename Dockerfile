@@ -73,7 +73,6 @@ USER node
 # Variables de entorno por defecto
 ENV HOME="/home/node"
 ENV OPENCODE_MEMORY_PATH="/data/memory"
-ENV AGENT_PASSWORD="databricks2026"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["--help"]
