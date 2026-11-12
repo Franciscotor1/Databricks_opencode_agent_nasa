@@ -9,9 +9,7 @@
       }
     }
   },
-  "plugin": [
-    "DietrichGebert/ponytail"
-  ],
+  "plugin": [],
   "mcp": {
     "databricks-sql": {
       "type": "http",
