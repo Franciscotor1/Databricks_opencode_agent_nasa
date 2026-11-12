@@ -63,6 +63,9 @@ ENV PATH="/opt/venv/bin:/usr/local/bin:${PATH}"
 RUN mkdir -p /workspace /data/memory /home/node/.config/opencode && \
     chown -R node:node /workspace /data/memory /home/node
 
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 WORKDIR /workspace
 
 USER node
@@ -70,6 +73,7 @@ USER node
 # Variables de entorno por defecto
 ENV HOME="/home/node"
 ENV OPENCODE_MEMORY_PATH="/data/memory"
+ENV AGENT_PASSWORD="databricks2026"
 
-ENTRYPOINT ["opencode"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["--help"]
