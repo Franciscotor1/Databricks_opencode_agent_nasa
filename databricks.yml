@@ -1,0 +1,6 @@
+bundle:
+  name: databricks-opencode-agent
+
+workspace:
+  host: https://dbc-8a7d52db-c119.cloud.databricks.com
+  profile: DEFAULT
